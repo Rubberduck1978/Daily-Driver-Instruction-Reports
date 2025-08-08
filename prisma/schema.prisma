@@ -4,6 +4,9 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,18 +16,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model DriverInstruction {
-  id              String   @id @default(cuid())
-  employeeNumber  String?
-  route           String
-  runningNumber   String
-  headwayDeviation String?
-  earlyLate       String?
-  instruction     String
-  communicationType String?
-  timestamp       DateTime @default(now())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+model Instruction {
+  id          String   @id @default(uuid())
+  driverId    String
+  route       String
+  run         String
+  deviation   Float
+  delay       Int
+  instruction String
+  status      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  @@map("driver_instructions")
+  @@map("instructions")
 }
