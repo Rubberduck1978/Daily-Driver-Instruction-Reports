@@ -28,5 +28,3 @@ model DriverInstruction {
 
   @@map("driver_instructions")
 }
-  updatedAt DateTime @updatedAt
-}
