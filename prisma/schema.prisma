@@ -17,17 +17,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model "Driver Instructions" {
+model DriverInstructions {
   id                BigInt   @id @default(autoincrement())
-  "Driver ID"       String?
-  "Route"           String?
-  "Run No"          String?
-  "Headway Deviation" Float?
-  "Delay"           Int?
-  "Instruction"     String?
-  "Status"          String?
-  "Created at"      DateTime?
-  "Updated at"      DateTime?
+  driverId          String?  @map("Driver ID")
+  route             String?  @map("Route")
+  runNo             String?  @map("Run No")
+  headwayDeviation  Float?   @map("Headway Deviation")
+  delay             Int?     @map("Delay")
+  instruction       String?  @map("Instruction")
+  status            String?  @map("Status")
+  createdAt         DateTime? @map("Created at")
+  updatedAt         DateTime? @map("Updated at")
 
   @@map("Driver Instructions")
 }
