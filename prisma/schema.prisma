@@ -7,6 +7,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
@@ -16,17 +17,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Instruction {
-  id          String   @id @default(uuid())
-  driverId    String
-  route       String
-  run         String
-  deviation   Float
-  delay       Int
-  instruction String
-  status      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model "Driver Instructions" {
+  id                BigInt   @id @default(autoincrement())
+  "Driver ID"       String?
+  "Route"           String?
+  "Run No"          String?
+  "Headway Deviation" Float?
+  "Delay"           Int?
+  "Instruction"     String?
+  "Status"          String?
+  "Created at"      DateTime?
+  "Updated at"      DateTime?
 
-  @@map("instructions")
+  @@map("Driver Instructions")
 }
