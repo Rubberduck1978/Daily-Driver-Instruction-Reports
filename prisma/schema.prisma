@@ -10,15 +10,13 @@ datasource db {
 
 model DriverInstructions {
   id                BigInt   @id @default(autoincrement())
-  driverId          String?  @map("Driver ID")
-  route             String?  @map("Route")
-  runNo             String?  @map("Run No")
-  headwayDeviation  Float?   @map("Headway Deviation")
-  delay             Int?     @map("Delay")
-  instruction       String?  @map("Instruction")
-  status            String?  @map("Status")
-  createdAt         DateTime? @map("Created at")
-  updatedAt         DateTime? @map("Updated at")
-
-  @@map("Driver Instructions")
+  driverId          String?
+  route             String?
+  runNo             String?
+  headwayDeviation  Float?
+  delay             Int?
+  instruction       String?
+  status            String?
+  createdAt         DateTime?
+  updatedAt         DateTime?
 }
