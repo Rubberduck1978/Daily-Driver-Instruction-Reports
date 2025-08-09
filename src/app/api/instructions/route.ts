@@ -1,11 +1,12 @@
+// src/app/api/instructions/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
 export async function GET() {
   try {
-    const instructions = await db.instruction.findMany({
+    const instructions = await db.driverInstructions.findMany({
       orderBy: {
-        createdAt: 'desc'
+        "Created at": 'desc'
       }
     });
     
@@ -19,17 +20,19 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { driverId, route, run, deviation, delay, instruction } = body;
+    const { employeeNumber, route, runningNumber, headwayDeviation, earlyLate, communicationType, instruction } = body;
     
-    const newInstruction = await db.instruction.create({
+    const newInstruction = await db.driverInstructions.create({
       data: {
-        driverId,
-        route,
-        run,
-        deviation,
-        delay,
-        instruction,
-        status: 'pending'
+        "Driver ID": employeeNumber || null,
+        "Route": route,
+        "Run No": runningNumber,
+        "Headway Deviation": headwayDeviation ? parseFloat(headwayDeviation) : null,
+        "Delay": earlyLate ? parseInt(earlyLate) : null,
+        "Instruction": instruction,
+        "Status": 'pending',
+        "Created at": new Date(),
+        "Updated at": new Date()
       }
     });
     
