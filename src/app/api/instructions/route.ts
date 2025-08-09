@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const instructions = await db.driverInstructions.findMany({
       orderBy: {
-        "Created at": 'desc'
+        createdAt: 'desc'
       }
     });
     
@@ -24,15 +24,15 @@ export async function POST(request: NextRequest) {
     
     const newInstruction = await db.driverInstructions.create({
       data: {
-        "Driver ID": employeeNumber || null,
-        "Route": route,
-        "Run No": runningNumber,
-        "Headway Deviation": headwayDeviation ? parseFloat(headwayDeviation) : null,
-        "Delay": earlyLate ? parseInt(earlyLate) : null,
-        "Instruction": instruction,
-        "Status": 'pending',
-        "Created at": new Date(),
-        "Updated at": new Date()
+        driverId: employeeNumber || null,
+        route: route,
+        runNo: runningNumber,
+        headwayDeviation: headwayDeviation ? parseFloat(headwayDeviation) : null,
+        delay: earlyLate ? parseInt(earlyLate) : null,
+        instruction: instruction,
+        status: 'pending',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     });
     
